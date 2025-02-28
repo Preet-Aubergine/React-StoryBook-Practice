@@ -30,7 +30,7 @@ This template ships with the main React and Storybook configuration files you'll
     cd taskbox/
 
     # Install the dependencies
-    yarn
+    npm install 
     ```
 
 1.  **Open the source code and start editing!**
@@ -39,7 +39,7 @@ This template ships with the main React and Storybook configuration files you'll
 
 1.  **Browse your stories!**
 
-    Run `yarn storybook` to see your component's stories at `http://localhost:6006`
+    Run `npm run storybook` to see your component's stories at `http://localhost:6006`
 
 ## 🔎 What's inside?
 
