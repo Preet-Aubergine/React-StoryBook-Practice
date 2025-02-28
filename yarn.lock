@@ -458,6 +458,20 @@
   resolved "https://registry.npmjs.org/@rollup/rollup-linux-x64-gnu/-/rollup-linux-x64-gnu-4.34.8.tgz"
   integrity sha512-8y7ED8gjxITUltTUEJLQdgpbPh1sUQ0kMTmufRF/Ns5tI9TNMNlhWtmPKKHCU0SilX+3MJkZ0zERYYGIVBYHIA==
 
+"@rollup/rollup-linux-x64-musl@4.34.8":
+  version "4.34.8"
+  resolved "https://registry.npmjs.org/@rollup/rollup-linux-x64-musl/-/rollup-linux-x64-musl-4.34.8.tgz"
+  integrity sha512-SCXcP0ZpGFIe7Ge+McxY5zKxiEI5ra+GT3QRxL0pMMtxPfpyLAKleZODi1zdRHkz5/BhueUrYtYVgubqe9JBNQ==
+
+"@storybook/addon-a11y@^8.6.2":
+  version "8.6.2"
+  resolved "https://registry.npmjs.org/@storybook/addon-a11y/-/addon-a11y-8.6.2.tgz"
+  integrity sha512-pfnJNdXbo38lJzyaaMSTz4DBjQb+YX8M1bFbeuQMH4QI4AATFCxxoCKz2O6x/Nxqdc4VqNsXCKxJlxgt/+Fniw==
+  dependencies:
+    "@storybook/addon-highlight" "8.6.2"
+    "@storybook/test" "8.6.2"
+    axe-core "^4.2.0"
+
 "@storybook/addon-actions@8.6.2":
   version "8.6.2"
   resolved "https://registry.npmjs.org/@storybook/addon-actions/-/addon-actions-8.6.2.tgz"
@@ -1141,6 +1155,11 @@ available-typed-arrays@^1.0.7:
   integrity sha512-wvUjBtSGN7+7SjNpq/9M2Tg350UZD3q62IFZLbRAR1bSMlCo1ZaeW+BJ+D090e4hIIZLBcTDWe4Mh4jvUDajzQ==
   dependencies:
     possible-typed-array-names "^1.0.0"
+
+axe-core@^4.2.0:
+  version "4.10.2"
+  resolved "https://registry.npmjs.org/axe-core/-/axe-core-4.10.2.tgz"
+  integrity sha512-RE3mdQ7P3FRSe7eqCWoeQ/Z9QXrtniSjp1wUjt5nRC3WIpz5rSCve6o3fsZ2aCpJtrZjSZgjwXAoTO5k4tEI0w==
 
 balanced-match@^1.0.0:
   version "1.0.2"
