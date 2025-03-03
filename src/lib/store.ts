@@ -1,24 +1,35 @@
 import type { TaskData } from "../types";
-import { configureStore, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import {
+  configureStore,
+  createSlice,
+  createAsyncThunk,
+  PayloadAction,
+} from "@reduxjs/toolkit";
 
 interface TaskBoxState {
   tasks: TaskData[];
-  status: "idle" | "loading" | "failed";
+  status: "idle" | "loading" | "failed" | "succeeded";
   error: string | null;
 }
 
-const defaultTasks: TaskData[] = [
-  { id: "1", title: "Task 1", state: "TASK_INBOX" },
-  { id: "2", title: "Task 2", state: "TASK_INBOX" },
-  { id: "3", title: "Task 3", state: "TASK_INBOX" },
-  { id: "4", title: "Task 4", state: "TASK_INBOX" },
-];
-
 const TaskBoxData: TaskBoxState = {
-  tasks: defaultTasks,
+  tasks: [],
   status: "idle",
   error: null,
 };
+
+export const fetchTasks = createAsyncThunk("taskbox/fetchTasks", async () => {
+  const response = await fetch('https://jsonplaceholder.typicode.com/todos?userId=1');
+  const data = await response.json();
+  const result = data.map(
+    (task: { id: number; title: string; completed: boolean }) => ({
+      id: `${task.id}`,
+      title: task.title,
+      state: task.completed ? "TASK_ARCHIVED" : "TASK_INBOX",
+    })
+  );
+  return result;
+});
 
 const TasksSlice = createSlice({
   name: "taskbox",
@@ -26,7 +37,7 @@ const TasksSlice = createSlice({
   reducers: {
     updateTaskState: (
       state,
-      action: PayloadAction<{ id: String; newTaskState: TaskData["state"] }>
+      action: PayloadAction<{ id: string; newTaskState: TaskData["state"] }>
     ) => {
       const task = state.tasks.find((task) => task.id === action.payload.id);
       if (task) {
@@ -34,6 +45,23 @@ const TasksSlice = createSlice({
       }
     },
   },
+  extraReducers(builder){
+    builder.addCase(fetchTasks.pending, (state) => {
+      state.status = "loading";
+      state.error = null;
+      state.tasks = [];
+    });
+    builder.addCase(fetchTasks.fulfilled, (state, action) => {
+      state.status = "succeeded";
+      state.error = null;
+      state.tasks = action.payload;
+    });
+    builder.addCase(fetchTasks.rejected, (state, action) => {
+      state.status = "failed";
+      state.error = "Something went wrong";
+      state.tasks = [];
+    });
+  }
 });
 
 export const { updateTaskState } = TasksSlice.actions;
